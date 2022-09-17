@@ -21,6 +21,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => 'auth:sanctum'], function(){
     //All secure URL's
+    Route::get('/example', function() {
+        return "example";
+    });
     Route::post('/logout',[UserController::class,'logout']);
 });
 

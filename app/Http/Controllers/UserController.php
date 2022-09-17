@@ -47,6 +47,16 @@ class UserController extends Controller
     
     public function login(Request $request)
     {
+        $rules = array(
+            "email" => "required|email",
+            "password" => "required|min:4|max:20"
+        );
+
+        $isValid = Validator::make($request->all(), $rules);
+        if ($isValid->fails()) {
+            return response()->json($isValid->errors(), 400);
+        }
+        
         $user= User::where('email', $request->email)->first();
 
             if(!$user) {
