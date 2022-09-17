@@ -26,23 +26,26 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['middleware' => 'auth:sanctum'], function(){
-    //All secure URL's
-    Route::get('/example1', function() {
-        return "example1";
-    });
-    Route::post('/logout',[UserController::class,'logout']);
+//All secure URI's
+    
+//User
+    Route::post('/logout',[UserController::class,'logout']);  
+
+//ToDoList
+    Route::get('/category-list',[ToDoListController::class,'getCategory']);
     Route::get('/list',[ToDoListController::class,'getListByUserId']);
     Route::post('/add',[ToDoListController::class,'store']);
+    Route::get("/filter",[ToDoListController::class,'filterlist']);
+
+//Task
+    Route::post("/add-task",[TaskController::class,'create_todo_task']);
+    Route::get("/task/{task_id}",[TaskController::class,'getTaskById']);
+    Route::put("/edit/{task_id}",[TaskController::class,'updateTask']);
+    Route::patch("/update-status",[TaskController::class,'updateStatus']);
+    Route::get("/dashboard",[TaskController::class,'dashboard']);  
 });
 
-Route::post("/add",[TaskController::class,'create_todo_task']);
-Route::get("/task/{task_id}",[TaskController::class,'showTaskById']);
-
-Route::patch("/update-status",[StatusController::class,'updateStatus']);
-
+//User
 Route::post("/signup",[UserController::class,'signup']);
 Route::post("/login",[UserController::class,'login'])->name('login');
 
-
-Route::get("/filter",[FilterController::class,'filterlist']);
-Route::get("/dashboard",[DashboardController::class,'index']);

@@ -20,7 +20,6 @@ class ToDoList extends Model
 
     protected $casts = [
         
-        'date' => 'date',
         'integer' => 'category',
         'integer' => 'userId',
         'integer' => 'status'

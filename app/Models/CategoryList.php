@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class CategoryList extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'category',
+        'status'
+    ];
+
+    protected $casts = [
+        'integer' => 'status'
+    ];
 }

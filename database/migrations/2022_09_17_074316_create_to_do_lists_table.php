@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('remark');
-            $table->date('date');
+            $table->string('date');
             $table->integer(('category'));
             $table->integer('userId');
             $table->integer('status');

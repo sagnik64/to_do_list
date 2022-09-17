@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('category_lists', function (Blueprint $table) {
             $table->id();
+            $table->string('category');
+            $table->integer('status');
             $table->timestamps();
         });
     }

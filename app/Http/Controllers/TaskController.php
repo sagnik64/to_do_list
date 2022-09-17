@@ -10,39 +10,69 @@ class TaskController extends Controller
 {
     public function create_todo_task(Request $req)
     {
-        $data = Task::create($req->all());
+        $task = Task::create($req->all());
 
-        if($data) {
+        if($task) {
             return response()->json([
-                "message" => "To Do Created successfully",
-                "data" => $data
+                "code" => 201,
+                "msg" => "created successfully"
             ],201);
         }
         return response()->json([
-            "success" => "false",
             "code" => 400,
-            "message" => "Failed to Create To Do."
+            "msg" => "failed to create"
         ],400);
 
     }
 
-    public function showTaskById($id)
+    public function getTaskById($id)
     {
-        $data = Task::find($id);
+        $task = Task::where('id','=',$id)->get();
+        if($task){
+            return $task;
+        }
+        return response()->json([
+            "code" => 400,
+            "msg" => "failed to find task"
+        ],400);
+        
+    }
 
-        if($data)
-        {
-            $details = ["id"=>$data->id,
-            "title"=>$data->title,
-            "status"=>$data->status,
-            "category"=>$data->category,
-            "remark"=>$data->remark,
-            "date"=>$data->date];
-            return $details;
+    public function updateTask(Request $request, $id){
+        $task = Task::find($id);
+        $task->update($request->all());
+
+        if($task) {
+            return $task->where('id','=',$id)->get();
         }
-        else
-        {
-            return ["Message"=>"Task Not Found."];
+        return response()->json([
+            "code" => 400,
+            "msg" => "failed to update task"
+        ],400);
+    }
+
+    public function updateStatus(Request $request)
+    {
+        $task = Task::find($request->id)->update(['status'=>$request->status]);
+        if($task){
+            return response()->json([
+                "code" => 200,
+                "msg" => "status updated successfully"
+            ],200);
         }
+        return response()->json([
+            "code" => 400,
+            "msg" => "failed to update"
+        ],400);
+    }
+
+    public function dashboard () {
+        $task = Task::count();
+        $completedTask = Task::where('status','=',1)->count();
+        return [[
+            'total_task' => $task,
+            'due_task' => ($task - $completedTask),
+            'completed' => $completedTask
+        ]];
     }
 }
