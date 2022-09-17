@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('to_do_lists', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('remark');
+            $table->date('date');
+            $table->integer(('category'));
+            $table->integer('userId');
+            $table->integer('status');
             $table->timestamps();
         });
     }

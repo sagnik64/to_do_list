@@ -1,5 +1,6 @@
 <?php
 
+
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\StatusController;
@@ -26,10 +27,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => 'auth:sanctum'], function(){
     //All secure URL's
-    // Route::get('/example1', function() {
-    //     return "example1";
-    // });
+    Route::get('/example1', function() {
+        return "example1";
+    });
     Route::post('/logout',[UserController::class,'logout']);
+    Route::get('/list',[ToDoListController::class,'getListByUserId']);
+    Route::post('/add',[ToDoListController::class,'store']);
 });
 
 Route::post("/add",[TaskController::class,'create_todo_task']);
@@ -38,7 +41,7 @@ Route::get("/task/{task_id}",[TaskController::class,'showTaskById']);
 Route::patch("/update-status",[StatusController::class,'updateStatus']);
 
 Route::post("/signup",[UserController::class,'signup']);
-Route::post("/login",[UserController::class,'login']);
+Route::post("/login",[UserController::class,'login'])->name('login');
 
 
 Route::get("/filter",[FilterController::class,'filterlist']);

@@ -4,7 +4,7 @@
 •	PHP 7.3 or higher
 
 ## Version
-This Laravel framework is running on a version of 8.x
+This Laravel framework is running on a version of 9.x
 
 ## Usage <br>
 Clone the repository <br>
