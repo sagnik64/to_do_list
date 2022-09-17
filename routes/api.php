@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ToDoListController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -21,12 +22,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => 'auth:sanctum'], function(){
     //All secure URL's
-    // Route::get('/example1', function() {
-    //     return "example1";
-    // });
+    Route::get('/example1', function() {
+        return "example1";
+    });
     Route::post('/logout',[UserController::class,'logout']);
+    Route::get('/list',[ToDoListController::class,'getListByUserId']);
+    Route::post('/add',[ToDoListController::class,'store']);
 });
 
 Route::post("/signup",[UserController::class,'signup']);
-Route::post("/login",[UserController::class,'login']);
+Route::post("/login",[UserController::class,'login'])->name('login');
 
