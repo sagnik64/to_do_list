@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('dashboards', function (Blueprint $table) {
             $table->id();
+            $table->integer("total_task");
+            $table->integer("due_task");
+            $table->integer("completed_task");
             $table->timestamps();
         });
     }

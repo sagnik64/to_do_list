@@ -25,4 +25,5 @@ class ToDoList extends Model
         'integer' => 'userId',
         'integer' => 'status'
     ];
+
 }
