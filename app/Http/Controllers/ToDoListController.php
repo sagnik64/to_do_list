@@ -49,10 +49,12 @@ class ToDoListController extends Controller
         $category = (int)$request->category;
         $status = (int)$request->status;
         $date = $request->date;
+        $userId = $request->userId;
 
         $toDoList = ToDoList::where('category','like',$category.'%')
         ->where('status','like',$status.'%')
         ->where('date','like',$date.'%')
+        ->where('userId','=',$userId)
         ->get();
         
         return $toDoList;
