@@ -15,7 +15,8 @@ class TaskController extends Controller
         if($task) {
             return response()->json([
                 "code" => 201,
-                "msg" => "created successfully"
+                "msg" => "created successfully",
+                "id" => "$task->id"
             ],201);
         }
         return response()->json([

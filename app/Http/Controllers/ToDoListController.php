@@ -35,6 +35,7 @@ class ToDoListController extends Controller
             return response()->json([
                 "code" => 201,
                 "msg" => 'created successfully',
+                "id" => $toDoList->id
             ],201);
         }
         return response()->json([
