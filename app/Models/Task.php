@@ -19,7 +19,6 @@ class Task extends Model
     ];
 
     protected $casts = [
-        "integer" => "category",
         "integer" => "userId",
         "integer" => "status"
     ];

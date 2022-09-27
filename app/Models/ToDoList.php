@@ -19,8 +19,6 @@ class ToDoList extends Model
     ];
 
     protected $casts = [
-        
-        'integer' => 'category',
         'integer' => 'userId',
         'integer' => 'status'
     ];
