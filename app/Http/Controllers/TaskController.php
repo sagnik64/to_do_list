@@ -66,12 +66,13 @@ class TaskController extends Controller
         ],400);
     }
 
-    public function dashboard () {
-        $task = Task::count();
-        $completedTask = Task::where('status','=',1)->count();
+    public function dashboard (Request $request) {
+        $totalTask = Task::where('userId','=',$request->userId)->count();
+        
+        $completedTask = Task::where('userId','=',$request->userId)->where('status','=',1)->count();
         return [[
-            'total_task' => $task,
-            'due_task' => ($task - $completedTask),
+            'total_task' => $totalTask,
+            'due_task' => ($totalTask - $completedTask),
             'completed' => $completedTask
         ]];
     }
