@@ -40,7 +40,7 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
 //Task
     Route::post("/add-task",[TaskController::class,'create_todo_task']);
     Route::get("/task/{task_id}",[TaskController::class,'getTaskById']);
-    Route::get("/task/{userId}",[TaskController::class,'getTaskByUserId']);
+    Route::get("/tasks/{userId}",[TaskController::class,'getTaskByUserId']);
     Route::put("/edit/{task_id}",[TaskController::class,'updateTask']);
     Route::patch("/update-status",[TaskController::class,'updateStatus']);
     Route::get("/dashboard",[TaskController::class,'dashboard']);  
