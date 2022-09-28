@@ -43,7 +43,7 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::get("/tasks/{userId}",[TaskController::class,'getTaskByUserId']);
     Route::put("/edit/{task_id}",[TaskController::class,'updateTask']);
     Route::patch("/update-status",[TaskController::class,'updateStatus']);
-    Route::get("/dashboard",[TaskController::class,'dashboard']);  
+    Route::post("/dashboard",[TaskController::class,'dashboard']);  
 });
 
 //User
