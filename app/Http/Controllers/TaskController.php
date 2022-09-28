@@ -39,6 +39,20 @@ class TaskController extends Controller
         
     }
 
+    public function getTaskByUserId($userId)
+    {
+        $task = Task::where('userId','=',$userId)->get();
+        if($task){
+            return $task;
+        }
+        return response()->json([
+            "code" => 400,
+            "msg" => "failed to find task"
+        ],400);
+    }
+
+    
+
     public function updateTask(Request $request, $id){
         $task = Task::find($id);
         $task->update($request->all());

@@ -39,11 +39,11 @@ class UserController extends Controller
         if($user) {
             return response([
                 "code" => 201,
-                "msg" => "Successfully Registered"
+                "msg" => "Successfully Registered",
+                "id" => $user->id
             ],201);
         }
     }
-    
     
     public function login(Request $request)
     {
